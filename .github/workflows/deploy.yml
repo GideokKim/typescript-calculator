@@ -10,10 +10,11 @@ permissions:
   contents: write
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -23,18 +24,20 @@ jobs:
           cache-dependency-path: calculator/package-lock.json
 
       - name: Install Dependencies
-        working-directory: ./calculator
-        run: npm ci
+        run: |
+          cd calculator
+          npm ci
 
       - name: Build
-        working-directory: ./calculator
-        run: npm run build
+        run: |
+          cd calculator
+          npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./calculator/dist
+          publish_dir: calculator/dist
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
