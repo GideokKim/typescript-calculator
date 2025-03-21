@@ -36,7 +36,6 @@ jobs:
       - name: Build
         env:
           NODE_ENV: production
-          PUBLIC_URL: https://gideokkim.github.io/typescript-calculator
         run: npm run build
 
       - name: Deploy

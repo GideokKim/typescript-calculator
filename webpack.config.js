@@ -2,14 +2,14 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const publicUrl = process.env.PUBLIC_URL || '';
+const publicUrl = isProduction ? '/typescript-calculator' : '';
 
 module.exports = {
     entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: isProduction ? '/typescript-calculator/' : '/'
+        publicPath: isProduction ? './' : '/'
     },
     module: {
         rules: [
