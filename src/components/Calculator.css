@@ -39,6 +39,7 @@
     font-size: 1.5rem;
     padding: 15px;
     transition: all 0.2s ease;
+    min-height: 60px;
 }
 
 .button:hover {
@@ -69,7 +70,7 @@
     background-color: #d35400;
 }
 
-/* 특수 버튼 스타일 (C, =) */
+/* 특수 버튼 스타일 (AC) */
 .button[data-type="special"] {
     background-color: #e74c3c;
 }
@@ -81,9 +82,15 @@
 /* = 버튼 특별 스타일 */
 .button[data-type="equals"] {
     background-color: #27ae60;
-    grid-column: span 2;
+    grid-row: span 3;
 }
 
 .button[data-type="equals"]:hover {
     background-color: #219a52;
+}
+
+/* 0 버튼 스타일 */
+.button[data-type="number"][style*="grid-column: span 3"] {
+    text-align: center;
+    border-radius: 8px;
 } 

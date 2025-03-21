@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { CalculatorUI } from './components/CalculatorUI';
+import { Calculator } from './components/Calculator';
+import './index.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -8,6 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <CalculatorUI />
+        <Calculator />
     </React.StrictMode>
 ); 
