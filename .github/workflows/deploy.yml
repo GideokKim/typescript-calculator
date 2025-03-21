@@ -21,23 +21,19 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: calculator/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install Dependencies
-        run: |
-          cd calculator
-          npm ci
+        run: npm ci
 
       - name: Build
-        run: |
-          cd calculator
-          npm run build
+        run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: calculator/dist
+          publish_dir: dist
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
