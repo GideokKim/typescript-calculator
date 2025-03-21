@@ -25,22 +25,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: List files
+        run: ls -la
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
       - name: Install Dependencies
+        working-directory: .
         run: npm install
 
       - name: Build
+        working-directory: .
         run: npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
+          publish_dir: ./dist
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
