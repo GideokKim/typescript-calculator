@@ -1,12 +1,15 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const isProduction = process.env.NODE_ENV === 'production';
+const publicUrl = process.env.PUBLIC_URL || '';
+
 module.exports = {
     entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: process.env.NODE_ENV === 'production' ? '/typescript-calculator/' : '/'
+        publicPath: isProduction ? '/typescript-calculator/' : '/'
     },
     module: {
         rules: [
@@ -27,6 +30,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
+            templateParameters: {
+                PUBLIC_URL: publicUrl
+            }
         }),
     ],
     devServer: {
