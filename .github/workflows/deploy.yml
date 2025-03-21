@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+# GitHub Pages에 대한 쓰기 권한 추가
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,6 +19,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: calculator/package-lock.json
 
       - name: Install Dependencies
         working-directory: ./calculator
@@ -28,4 +34,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./calculator/dist 
+          publish_dir: ./calculator/dist
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy to GitHub Pages' 
